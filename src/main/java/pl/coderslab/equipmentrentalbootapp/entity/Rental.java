@@ -1,7 +1,12 @@
 package pl.coderslab.equipmentrentalbootapp.entity;
 
+import org.hibernate.mapping.ToOne;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "rentals")
@@ -9,12 +14,10 @@ public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "item_id")
+    @ManyToOne
     private Item item;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne
     private User user;
 
     private LocalDateTime created;
@@ -77,10 +80,6 @@ public class Rental {
     public String toString() {
         return "Rental{" +
                 "id=" + id +
-                ", item=" + item +
-                ", user=" + user +
-                ", created=" + created +
-                ", rentalDays=" + rentalDays +
                 '}';
     }
 }

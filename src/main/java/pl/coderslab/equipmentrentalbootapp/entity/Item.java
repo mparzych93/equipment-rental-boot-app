@@ -1,6 +1,10 @@
 package pl.coderslab.equipmentrentalbootapp.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,13 +13,18 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    @Size(min = 5, max = 30)
     private String name;
+    @Min(value = 1)
     private int minimumRentalPeriodInDays;
+    @Min(value = 1)
     private int rentalCostPerDay;
+    @Min(value = 1)
     private int refundableDeposit;
+    @Min(value = 1)
     private int amountForDelay;
-    private String pickupAddress;
-    private String returnAddress;
+    @Size(min = 10, max = 200)
     private String description;
     @ManyToOne
     private Category category;
@@ -23,8 +32,8 @@ public class Item {
     @ManyToOne
     private User user;
 
-    @OneToOne(mappedBy = "item")
-    private Rental rental;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Rental> rentals = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -74,22 +83,6 @@ public class Item {
         this.amountForDelay = amountForDelay;
     }
 
-    public String getPickupAddress() {
-        return pickupAddress;
-    }
-
-    public void setPickupAddress(String pickupAddress) {
-        this.pickupAddress = pickupAddress;
-    }
-
-    public String getReturnAddress() {
-        return returnAddress;
-    }
-
-    public void setReturnAddress(String returnAddress) {
-        this.returnAddress = returnAddress;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -114,12 +107,12 @@ public class Item {
         this.user = user;
     }
 
-    public Rental getRental() {
-        return rental;
+    public List<Rental> getRentals() {
+        return rentals;
     }
 
-    public void setRental(Rental rental) {
-        this.rental = rental;
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
     }
 
     @Override
@@ -127,6 +120,8 @@ public class Item {
         return "Item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", rentals=" + rentals +
+                ", user=" + user +
                 '}';
     }
 }

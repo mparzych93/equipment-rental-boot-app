@@ -42,8 +42,13 @@
                             <tr class="d-flex">
                                 <th scope="row" class="col-2">Okres wypożyczenia (dni)</th>
                                 <td class="col-7">
+                                    <form:input path="item.user.id" value="${entityRental.item.user.id}" type="hidden" />
+                                    <form:errors path="item.user.id" />
                                     <form:input path="item.id" value="${entityRental.item.id}" type="hidden"/>
+                                    <form:errors path="item.id" />
+                                    <form:input path="item.minimumRentalPeriodInDays" value="${entityRental.item.minimumRentalPeriodInDays}" type="hidden"/>
                                     <form:input path="rentalDays" class="p-1" type="number" value="" />
+                                    <form:errors path="rentalDays" />
                                 </td>
                             </tr>
                             </tbody>

@@ -26,21 +26,27 @@
                     <h1 class="text-color-darker">Rejestracja</h1>
                     <div class="form-group">
                         <form:input type="text" class="form-control" id="userName" path="userName" placeholder="podaj login" />
+                        <form:errors path="userName" />
                     </div>
                     <div class="form-group">
                         <form:input type="text" class="form-control" id="firstName" path="firstName" placeholder="podaj imię" />
+                        <form:errors path="firstName" />
                     </div>
                     <div class="form-group">
                         <form:input type="text" class="form-control" id="lastName" path="lastName" placeholder="podaj nazwisko" />
+                        <form:errors path="lastName" />
                     </div>
                     <div class="form-group">
                         <form:input type="number" class="form-control" id="age" path="age" placeholder="podaj wiek" />
+                        <form:errors path="age" />
                     </div>
                     <div class="form-group">
                         <form:input type="text" class="form-control" id="email" path="email" placeholder="podaj email" />
+                        <form:errors path="email" />
                     </div>
                     <div class="form-group">
                         <form:input type="password" class="form-control" id="password" path="password" placeholder="podaj hasło" />
+                        <form:errors path="password" />
                     </div>
                     <button class="btn btn-color rounded-0" type="submit">Zarejestruj</button>
                 </form:form>

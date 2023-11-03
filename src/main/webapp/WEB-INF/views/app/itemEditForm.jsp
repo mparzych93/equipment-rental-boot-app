@@ -26,12 +26,12 @@
                 <div class="mt-4 ml-4 mr-4">
                     <!-- fix action, method -->
                     <!-- add name attribute for all inputs -->
-                    <form:form method="post" modelAttribute="item">
+                    <form:form action="/app/item/edit" method="post" modelAttribute="itemToEdit">
                         <div class="mt-4 ml-4 mr-4">
                             <div class="row border-bottom border-3">
-                                <div class="col"><h3 class="color-header text-uppercase">Nowy przedmiot</h3></div>
+                                <div class="col"><h3 class="color-header text-uppercase">Edytuj przedmiot</h3></div>
                                 <div class="col d-flex justify-content-end mb-2">
-                                    <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Wystaw</button>
+                                    <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz zmiany</button>
                                 </div>
                             </div>
 
@@ -40,64 +40,68 @@
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2">Nazwa przedmiotu</th>
                                     <td class="col-7">
-
-                                        <form:input path="name" class="w-100 p-1" value="" />
+                                        <form:input path="id" value="${itemToEdit.id}" type="hidden" />
+                                        <form:input path="user.id" value="${itemToEdit.user.id}" type="hidden" />
+                                        <form:input path="rental.id" value="${itemToEdit.rental.id}" type="hidden" />
+                                        <form:errors path="rental.id" />
+                                        <form:input path="name" class="w-100 p-1" value="${itemToEdit.name}" />
+                                        <form:errors path="name" />
                                     </td>
                                 </tr>
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2">Opis przedmiotu</th>
                                     <td class="col-7">
-
-                                        <form:textarea path="description" class="w-100 p-1" rows="5"></form:textarea>
+                                        <form:textarea path="description" class="w-100 p-1" rows="5" value="${itemToEdit.description}"></form:textarea>
+                                        <form:errors path="description" />
                                     </td>
                                 </tr>
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2">Minimalny okres wypożyczenia (dni)</th>
                                     <td class="col-3">
-                                        <form:input path="minimumRentalPeriodInDays" class="p-1" type="number" value="" />
+                                        <form:input path="minimumRentalPeriodInDays" class="p-1" type="number" value="${itemToEdit.minimumRentalPeriodInDays}" />
+                                        <form:errors path="minimumRentalPeriodInDays" />
                                     </td>
                                 </tr>
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2">Koszt wynajmu (PLN/dzień)</th>
                                     <td class="col-3">
-                                        <form:input path="rentalCostPerDay" class="p-1" type="number" value="" />
+                                        <form:input path="rentalCostPerDay" class="p-1" type="number" value="${itemToEdit.rentalCostPerDay}" />
+                                        <form:errors path="rentalCostPerDay" />
                                     </td>
                                 </tr>
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2">Kaucja zwrotna (PLN)</th>
                                     <td class="col-3">
-                                        <form:input path="refundableDeposit" class="p-1" type="number" value="" />
+                                        <form:input path="refundableDeposit" class="p-1" type="number" value="${itemToEdit.refundableDeposit}" />
+                                        <form:errors path="refundableDeposit" />
                                     </td>
                                 </tr>
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2">Kwota za opóźnienie (PLN/dzień)</th>
                                     <td class="col-3">
-                                        <form:input path="amountForDelay" class="p-1" type="number" value="" />
+                                        <form:input path="amountForDelay" class="p-1" type="number" value="${itemToEdit.amountForDelay}" />
+                                        <form:errors path="amountForDelay" />
                                     </td>
                                 </tr>
                                 <tr class="d-flex">
                                     <th scope="row" class="col-2">Kategoria</th>
                                     <td class="col-3">
                                         <form:select itemValue="id" itemLabel="name" path="category.id" items="${categories}" class="p-1" />
+                                        <form:errors path="category.id" />
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
 
                             <div class="row d-flex">
-                                <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Adres odbioru</h3></div>
+                                <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Uwagi</h3></div>
                                 <div class="col-2"></div>
-                                <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Adres zwrotu</h3></div>
                             </div>
                             <div class="row d-flex">
                                 <div class="col-5 p-4">
-                                    <form:textarea path="pickupAddress" class="w-100 p-1" rows="10"></form:textarea>
+<%--                                    <form:textarea path="pickupAddress" class="w-100 p-1" rows="10"></form:textarea>--%>
                                 </div>
                                 <div class="col-2"></div>
-
-                                <div class="col-5 p-4">
-                                    <form:textarea path="returnAddress" class="w-100 p-1" rows="10"></form:textarea>
-                                </div>
                             </div>
                         </div>
                     </form:form>

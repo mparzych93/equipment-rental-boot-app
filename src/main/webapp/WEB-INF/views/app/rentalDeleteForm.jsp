@@ -28,21 +28,36 @@
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
-                <form:form action="/app/item/delete" method="post" modelAttribute="itemToDelete">
+                <form:form action="/app/rental/delete" method="post" modelAttribute="rentalDto">
                     <div class="mt-4 ml-4 mr-4">
                         <div>
-                            <div class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć przedmiot?</h3></div>
-                        </div>
-
-                        <div>
-                            <form:input path="id" type="hidden" />
-                            <form:input path="minimumRentalPeriodInDays" type="hidden" />
-                            <form:input path="rentalCostPerDay" type="hidden" />
-                            <form:input path="amountForDelay" type="hidden" />
-                            <form:input path="refundableDeposit" type="hidden" />
-                            <form:input path="name" type="hidden" />
-                            <form:input path="rentals" type="hidden" />
-                            <form:errors path="rentals" />
+                            <div class="row border-bottom border-3">
+                                <div class="col"><h3 class="color-header text-uppercase">Szczegóły wypożyczenia</h3></div>
+                            </div>
+                            <table class="table borderless">
+                                <tbody>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Ilość dni:</th>
+                                    <td class="col-7">
+                                        <c:out value="${rentalDto.daysOnLoan}"/>
+                                    </td>
+                                </tr>
+                                <tr class="d-flex">
+                                    <th scope="row" class="col-2">Ostateczny koszt</th>
+                                    <td class="col-7">
+                                        <c:out value="${rentalDto.finalCost} PLN"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <form:input path="rentalId" type="hidden" />
+                            <form:input path="rentalDays" type="hidden" />
+                            <form:input path="daysOnLoan" type="hidden" />
+                            <form:errors path="daysOnLoan" />
+                            <form:input path="finalCost" type="hidden" />
+                            <div>
+                                <div class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz zakończyć wypożyczenie?</h3></div>
+                            </div>
                             <button name="choice" value="ok" type="submit" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Ok</button>
                             <button name="choice" value="anuluj" type="submit" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Anuluj</button>
                         </div>

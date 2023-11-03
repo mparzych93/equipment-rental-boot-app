@@ -49,4 +49,5 @@ public class ItemServiceImpl implements ItemService {
     public int countItemByUserId(Long id) {
         return itemRepository.countItemByUserId(id);
     }
+
 }

@@ -31,7 +31,7 @@
                 <td class="col-5"><c:out value="${userRental.item.name}"/></td>
                 <td class="col-5"><c:out value="${userRental.created}"/></td>
                 <td class="col-1 d-flex align-items-center justify-content-center flex-wrap">
-                    <a href="/app/recipe/delete/${userRental.id}" class="btn btn-danger rounded-0 text-light m-1">Zakończ</a>
+                    <a href="/app/rental/delete/${userRental.id}" class="btn btn-danger rounded-0 text-light m-1">Zakończ</a>
                     <a href="/app/recipe/extend/${userRental.id}" class="btn btn-info rounded-0 text-light m-1">Przedłuż</a>
                     <a href="/#" class="btn btn-warning rounded-0 text-light m-1">???</a>
                 </td>

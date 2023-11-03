@@ -71,16 +71,14 @@
                     </table>
 
                     <div class="row d-flex">
-                        <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Adres odbioru</h3></div>
+                        <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Uwagi</h3></div>
                         <div class="col-2"></div>
-                        <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Adres zwrotu</h3></div>
                     </div>
                     <div class="row d-flex">
                         <div class="col-5 p-4">
-                            <c:out value="${userItem.pickupAddress}"/>
+<%--                            <c:out value="${userItem.pickupAddress}"/>--%>
                         </div>
                         <div class="col-2"></div>
-                            <c:out value="${userItem.returnAddress}"/>
                     </div>
 
                 </div>

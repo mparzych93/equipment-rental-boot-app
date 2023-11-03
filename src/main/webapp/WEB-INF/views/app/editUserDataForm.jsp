@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
           crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"
           rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
@@ -25,88 +25,86 @@
         <%@ include file="sidePanelForAdmin.jsp" %>
 
         <div class="m-4 p-3 width-medium text-color-darker">
-            <div class="dashboard-content border-dashed p-3 m-4 view-height">
+            <div class="m-4 border-dashed view-height">
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
-                <form:form action="/app/item/add" method="post" modelAttribute="item">
+                <form:form action="/app/edit/userData" method="post" modelAttribute="userToEditDataDto">
                     <div class="mt-4 ml-4 mr-4">
                         <div class="row border-bottom border-3">
-                            <div class="col"><h3 class="color-header text-uppercase">Nowy przedmiot</h3></div>
+                            <div class="col"><h3 class="color-header text-uppercase">Edytuj dane</h3></div>
                             <div class="col d-flex justify-content-end mb-2">
-                                <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Wystaw</button>
+                                <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz
+                                </button>
                             </div>
                         </div>
 
                         <table class="table borderless">
                             <tbody>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Nazwa przedmiotu</th>
+                                <th scope="row" class="col-2"><h4>Imię</h4></th>
                                 <td class="col-7">
-                                    <form:input path="name" class="w-100 p-1" value="" />
-                                    <form:errors path="name" />
+                                    <form:input class="w-100 p-1" value="${userToEditDataDto.firstName}" path="firstName" />
+                                    <form:errors path="firstName" />
                                 </td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Opis przedmiotu</th>
+                                <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
                                 <td class="col-7">
-                                    <form:textarea path="description" class="w-100 p-1" rows="5"></form:textarea>
-                                    <form:errors path="description" />
+                                    <form:input class="w-100 p-1" value="${userToEditDataDto.lastName}" path="lastName" />
+                                    <form:errors path="lastName" />
                                 </td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Minimalny okres wypożyczenia (dni)</th>
+                                <th scope="row" class="col-2"><h4>Województwo</h4></th>
                                 <td class="col-3">
-                                    <form:input path="minimumRentalPeriodInDays" class="p-1" type="number" value="" />
-                                    <form:errors path="minimumRentalPeriodInDays" />
+                                    <form:input class="p-1 w-100" type="text" value="${userToEditDataDto.address.voivodeship}" path="address.voivodeship" />
+                                    <form:errors path="address.voivodeship" />
                                 </td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Koszt wynajmu (PLN/dzień)</th>
+                                <th scope="row" class="col-2"><h4>Miasto</h4></th>
                                 <td class="col-3">
-                                    <form:input path="rentalCostPerDay" class="p-1" type="number" value="" />
-                                    <form:errors path="rentalCostPerDay" />
+                                    <form:input class="p-1 w-100" type="text" value="${userToEditDataDto.address.city}" path="address.city" />
+                                    <form:errors path="address.city" />
                                 </td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Kaucja zwrotna (PLN)</th>
+                                <th scope="row" class="col-2"><h4>Kod pocztowy</h4></th>
                                 <td class="col-3">
-                                    <form:input path="refundableDeposit" class="p-1" type="number" value="" />
-                                    <form:errors path="refundableDeposit" />
+                                    <form:input class="p-1 w-100" type="text" value="${userToEditDataDto.address.postalCode}" path="address.postalCode" />
+                                    <form:errors path="address.postalCode" />
                                 </td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Kwota za opóźnienie (PLN/dzień)</th>
+                                <th scope="row" class="col-2"><h4>Ulica</h4></th>
                                 <td class="col-3">
-                                    <form:input path="amountForDelay" class="p-1" type="number" value="" />
-                                    <form:errors path="amountForDelay" />
+                                    <form:input class="p-1 w-100" type="text" value="${userToEditDataDto.address.street}" path="address.street" />
+                                    <form:errors path="address.street" />
                                 </td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2">Kategoria</th>
+                                <th scope="row" class="col-2"><h4>Numer ulicy</h4></th>
                                 <td class="col-3">
-                                    <form:select itemValue="id" itemLabel="name" path="category.id" items="${categories}" class="p-1" />
+                                    <form:input class="p-1 w-100" type="text" value="${userToEditDataDto.address.streetNumber}" path="address.streetNumber" />
+                                    <form:errors path="address.streetNumber" />
                                 </td>
                             </tr>
+                            <tr class="d-flex">
+                                <th scope="row" class="col-2"><h4>Numer lokalu</h4></th>
+                                <td class="col-3">
+                                    <form:input class="p-1 w-100" type="text" value="${userToEditDataDto.address.apartmentNumber}" path="address.apartmentNumber" />
+                                    <form:errors path="address.apartmentNumber" />
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
-
-                        <div class="row d-flex">
-                            <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Uwagi</h3></div>
-                            <div class="col-2"></div>
-                        </div>
-                        <div class="row d-flex">
-                            <div class="col-5 p-4">
-<%--                                <form:textarea path="pickupAddress" class="w-100 p-1" rows="10"></form:textarea>--%>
-                            </div>
-                            <div class="col-2"></div>
-                        </div>
                     </div>
                 </form:form>
             </div>
         </div>
     </div>
 </section>
-<%@ include file="../footer.jsp" %>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

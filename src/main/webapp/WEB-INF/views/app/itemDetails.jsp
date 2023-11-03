@@ -72,16 +72,14 @@
                     <div class="row d-flex">
                         <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Adres odbioru</h3></div>
                         <div class="col-2"></div>
-                        <div class="col-5 border-bottom border-3"><h3 class="text-uppercase">Adres zwrotu</h3></div>
                     </div>
                     <div class="row d-flex">
                         <div class="col-5 p-4">
-                            <c:out value="${item.pickupAddress}"/>
+                            <c:out value="${item.user.address.postalCode}" /> <c:out value="${item.user.address.city}"/><br>
+                            <c:out value="${item.user.address.street}"/> <c:out value="${item.user.address.streetNumber}"/>/<c:out value="${item.user.address.apartmentNumber}"/>
                         </div>
                         <div class="col-2"></div>
-                        <c:out value="${item.returnAddress}"/>
                     </div>
-
                 </div>
             </div>
         </div>

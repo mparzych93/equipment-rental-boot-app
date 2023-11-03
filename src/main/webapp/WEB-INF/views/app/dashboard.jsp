@@ -47,68 +47,54 @@
                 <div class="dashboard-alerts">
                     <div class="alert-item alert-info">
                         <i class="fas icon-circle fa-info-circle"></i>
-                        <span class="font-weight-bold">Liczba moich przedmiotów: <c:out value="${quantityOfUserItems}"/></span>
+                        <span class="font-weight-bold">Liczba moich przedmiotów: <c:out value="${quantityOfItems}" /></span>
                     </div>
                     <div class="alert-item alert-light">
                         <i class="far icon-calendar fa-calendar-alt"></i>
-                        <span class="font-weight-bold">Liczba planów: <c:out value="${quantityOfPlans}"/></span>
+                        <span class="font-weight-bold">Liczba przedmiotów, które wypożyczyłem od kogoś: <c:out value="${quantityOfRentals}" /></span>
                     </div>
                 </div>
             </div>
             <div class="m-4 p-4 border-dashed">
                 <h2 class="dashboard-content-title">
-                    <span>Ostatnio wystawiony przedmiot:</span> Plan jak u mamy
+                    <span>Wypożyczone przedmioty, które powinny być zwrócone:</span>
                 </h2>
                 <table class="table">
                     <thead>
                     <tr class="d-flex">
-                        <th class="col-2">Poniedziałek</th>
+                        <th class="col-2">Moje wypożyczenia</th>
                         <th class="col-8"></th>
-                        <th class="col-2"></th>
+                        <th class="col-1"></th>
+                        <th class="col-1"></th>
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${expiredRentals}" var="expiredRental">
                     <tr class="d-flex">
-                        <td class="col-2">śniadanie</td>
-                        <td class="col-8">płatki owsiane z jagodami i komosą ryżową</td>
-                        <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
+                        <td class="col-2">${expiredRental.item.name}</td>
+                        <td class="col-8">${expiredRental.created}</td>
+                        <td class="col-1"><button type="button" class="btn btn-primary rounded-0">Zakończ</button></td>
+                        <td class="col-1"><button type="button" class="btn btn-primary rounded-0">Przedłuż</button></td>
                     </tr>
-                    <tr class="d-flex">
-                        <td class="col-2">śniadanie</td>
-                        <td class="col-8">kanapka z pastą rybną</td>
-                        <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
-                    </tr>
-                    <tr class="d-flex">
-                        <td class="col-2">obiad</td>
-                        <td class="col-8">zupa pomidorowa</td>
-                        <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
-                    </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <table class="table">
                     <thead>
                     <tr class="d-flex">
-                        <th class="col-2">Wtorek</th>
+                        <th class="col-2">Moje produkty</th>
                         <th class="col-8"></th>
                         <th class="col-2"></th>
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${expiredRentalsOfMyItems}" var="expiredRentalOfMyItem">
                     <tr class="d-flex">
-                        <td class="col-2">śniadanie</td>
-                        <td class="col-8">płatki owsiane z jagodami i komosą ryżową</td>
-                        <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
+                        <td class="col-2">${expiredRentalOfMyItem.item.name}</td>
+                        <td class="col-8">${expiredRentalOfMyItem.created}</td>
+                        <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Zgłoś</button></td>
                     </tr>
-                    <tr class="d-flex">
-                        <td class="col-2">drugie śniadanie</td>
-                        <td class="col-8">pączki</td>
-                        <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
-                    </tr>
-                    <tr class="d-flex">
-                        <td class="col-2">obiad</td>
-                        <td class="col-8">schabowy w panierce</td>
-                        <td class="col-2"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></td>
-                    </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
